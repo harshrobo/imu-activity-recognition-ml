@@ -1,83 +1,162 @@
-# IMU-Based Human Activity Recognition using Machine Learning
+# 🚀 Human Activity Recognition using IMU Sensor Data (ANN & SVM)
 
 ## 📌 Overview
-This project focuses on classifying human activities using multi-sensor IMU data for biomechatronics and prosthetic applications.
+This project implements a Human Activity Recognition (HAR) system using Inertial Measurement Unit (IMU) sensor data.
 
-The system processes raw sensor data and uses machine learning models to accurately identify different activities of daily living.
+The pipeline processes raw sensor signals, performs data cleaning and synchronization, applies filtering, and uses machine learning models (ANN and SVM) to classify human activities.
 
----
-
-## ⚙️ Problem Statement
-Understanding user intent is critical for prosthetic and rehabilitation systems.
-
-This project uses IMU data from multiple body segments to classify activities such as:
-- Walking
-- Ramp Ascending
-- Sitting to Standing
-- Standing to Sitting
+The system demonstrates a full end-to-end workflow:
+data import → preprocessing → filtering → model training → evaluation
 
 ---
 
-## 🧠 Approach
-
-### 1. Data Processing
-- Imported raw `.dat` files
-- Cleaned missing and inconsistent data
-- Unified timestamps across sensors
-
-### 2. Signal Processing
-- Applied filtering (Kalman filter selected)
-- Removed noise and smoothed signals
-
-### 3. Feature Engineering
-- Sliding window technique (400ms window, 100ms step)
-- Extracted time-domain features
-- Flattened data into ML-ready format
-
-### 4. Machine Learning Models
-- Artificial Neural Network (ANN)
-- Support Vector Machine (SVM)
+## 🎯 Objectives
+- Import raw IMU sensor data
+- Clean and preprocess data for analysis
+- Synchronize timestamps across multiple sensors
+- Apply signal filtering to reduce noise
+- Train machine learning models for classification
+- Compare ANN and SVM performance
+- Evaluate results using confusion matrices
 
 ---
 
-## 📊 Results
+## 📁 Repository Structure
 
-| Model | Accuracy |
-|------|--------|
-| ANN  | 99.7%  |
-| SVM  | 97.6%  |
-
-### Key Insights:
-- Pelvis IMU provided the highest classification accuracy
-- Magnetometer features were most significant
-- ANN outperformed SVM for temporal gait data
-
----
-
-## 📷 Results Visualization
-
-(Add your confusion matrix images here)
+src/
+├── main.m                         # Main pipeline execution script
+├── data_import.m                 # Imports raw IMU data files
+├── data_cleaning.m              # Cleans dataset (NaNs, invalid entries, formatting)
+├── timestamp_unify.m            # Aligns timestamps across sensors
+├── filtering.m                  # Applies signal filtering / smoothing
+├── train_ann.m                  # Trains Artificial Neural Network model
+├── train_svm.m                  # Trains Support Vector Machine model
+├── README.md                    # Project documentation
+└── results/
+    ├── Confusion_matrix.png
+    ├── ANN and SVM confusion Matrix.png
+    ├── filtered data.png
 
 ---
 
-## 🛠️ Tools & Technologies
-- MATLAB
-- Machine Learning Toolbox
-- Signal Processing Techniques
+## ⚙️ System Pipeline
+
+Raw IMU Sensor Data
+        ↓
+Data Import (data_import.m)
+        ↓
+Data Cleaning (data_cleaning.m)
+        ↓
+Timestamp Synchronization (timestamp_unify.m)
+        ↓
+Signal Filtering (filtering.m)
+        ↓
+Feature Preparation
+        ↓
+Model Training
+   ├── ANN (train_ann.m)
+   └── SVM (train_svm.m)
+        ↓
+Model Evaluation
+        ↓
+Confusion Matrix Generation
 
 ---
 
-## 📂 Project Structure
-(Explain folders briefly)
+## 🧠 Machine Learning Models
+
+### 🔵 Artificial Neural Network (ANN)
+- Used for nonlinear classification of IMU time-series data
+- Captures complex relationships between motion signals
+- Provides high classification accuracy on processed data
+
+### 🟠 Support Vector Machine (SVM)
+- Used as a baseline classifier
+- Works on structured feature representations
+- Enables performance comparison with ANN
 
 ---
 
-## 🚀 Future Work
-- Implement CNN / LSTM for temporal modeling
-- Real-time deployment on embedded systems
-- Integration with prosthetic control systems
+## 📈 Results
+
+Model performance is evaluated using confusion matrices.
+
+### 📊 Output Files
+- Confusion_matrix.png
+- ANN and SVM confusion Matrix.png
+
+### 📌 Observations
+- ANN generally achieves higher accuracy than SVM
+- Proper preprocessing significantly improves classification performance
+- Timestamp alignment is critical for accurate model training
+- Signal filtering improves stability of classification results
 
 ---
 
-## 👤 Author
+## 📊 Data Processing Steps
+
+### 1. Data Import
+Handled by data_import.m:
+Loads raw IMU sensor data and structures it for processing.
+
+### 2. Data Cleaning
+Handled by data_cleaning.m:
+Removes NaN values, invalid entries, and standardizes dataset format.
+
+### 3. Timestamp Synchronization
+Handled by timestamp_unify.m:
+Aligns multiple sensor streams into a consistent time reference.
+
+### 4. Signal Filtering
+Handled by filtering.m:
+Applies smoothing techniques to reduce noise in IMU signals.
+
+---
+
+## 🛠️ How to Run
+
+Requirements:
+- MATLAB R2022 or later recommended
+
+Run the project:
+main.m
+
+This will:
+- Load IMU dataset
+- Perform preprocessing
+- Train ANN and SVM models
+- Generate confusion matrix outputs
+
+---
+
+## 📷 Results Folder
+
+The results folder contains:
+- Confusion matrices (ANN & SVM)
+- Filtered signal visualization
+- Model comparison plots
+
+---
+
+## 💡 Applications
+
+- Wearable motion tracking systems
+- Prosthetic limb control systems
+- Rehabilitation monitoring
+- Human activity recognition systems
+- Biomechanical signal analysis
+
+---
+
+## 🚀 Future Improvements
+
+- Add feature engineering (time + frequency domain)
+- Improve ANN architecture tuning
+- Implement deep learning models (CNN / LSTM)
+- Enable real-time IMU classification
+- Improve subject-independent generalization
+
+---
+
+## 👨‍💻 Author
 Harsh Sharma
